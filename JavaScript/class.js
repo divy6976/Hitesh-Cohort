@@ -19,6 +19,32 @@ const p2=new Person('meenakshi','pandey')
 
 
 
+
+
+
+
+
+
+
+
+
+
 console.log(p1.getfullname())
 console.log(p2.getfullname())
 
+
+
+//BluePrint -> Prototype
+//Object-> __proto__ BluePrint ke port ka
+
+
+//Prototype 
+//Prorto CHanining
+// Objects
+
+
+     //Blog on prototype ache se
+     // dono  =>{}
+
+        
+        

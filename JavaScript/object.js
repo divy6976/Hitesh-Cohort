@@ -18,3 +18,7 @@ const obj2={
 obj2.__proto__=obj1;
 console.log(obj2.getFullname());
 console.log()
+
+
+//BluePrint -> Prototype
+//Object-> __proto__ BluePrint ke port ka
