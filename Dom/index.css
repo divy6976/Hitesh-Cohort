@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+div:first-of-type {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Style for the div containing input and add button */
+div:first-of-type > div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style: none;
+  margin-top: 20px;
+  padding-left: 0;
+}
+
+li {
+  background: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li button {
+  background-color: crimson;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+#sbhtao {
+  margin-top: 15px;
+  width: 100%;
+  background-color: #e74c3c;
+}
+
+#sbhtao:hover {
+  background-color: #c0392b;
+}

@@ -29,6 +29,7 @@ const p2=new Person('meenakshi','pandey')
 
 
 
+
 console.log(p1.getfullname())
 console.log(p2.getfullname())
 
@@ -39,12 +40,12 @@ console.log(p2.getfullname())
 
 
 //Prototype 
-//Prorto CHanining
+//Prorto Chanining
 // Objects
 
 
-     //Blog on prototype ache se
-     // dono  =>{}
 
-        
-        
+
+
+
+ 

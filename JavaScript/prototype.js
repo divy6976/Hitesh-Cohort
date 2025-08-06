@@ -27,6 +27,7 @@ const user = {
 
 user.greet(); // Output: Hello, my name is Alice
 
+ user.__proto__.greet()
  
                                                                                   
 
