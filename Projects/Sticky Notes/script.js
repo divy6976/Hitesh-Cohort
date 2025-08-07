@@ -1,63 +1,96 @@
-const inputbtn=document.getElementById('inputbtn')
-const container=document.getElementById('container')
-const addbtn=document.getElementById('button-btn')
-const notes = document.querySelector(".notes-container"); // ✅ recommended
-const themebtn=document.getElementById('themebtn')
-addbtn.addEventListener('click',()=>{
-    const value=inputbtn.value;
-  
-  const box = document.createElement('div'); // 📦 wrapper box
- box.className='note'
+const inputbtn = document.getElementById('inputbtn');
+const container = document.getElementById('container');
+const addbtn = document.getElementById('button-btn');
+const notes = document.querySelector('.notes-container');
+const themebtn = document.getElementById('themebtn');
+
+// Helper: Get notes from localStorage
+function getNotesFromStorage() {
+  const notes = localStorage.getItem('notes');
+  return notes ? JSON.parse(notes) : [];
+}
+
+// Helper: Save notes to localStorage
+function saveNotesToStorage(notesArr) {
+  localStorage.setItem('notes', JSON.stringify(notesArr));
+}
+
+// Render all notes from storage
+function renderNotes() {
+  notes.innerHTML = '';
+  const notesArr = getNotesFromStorage();
+  notesArr.forEach((note, idx) => {
+    createNoteElement(note.text, note.color, idx);
+  });
+}
+
+// Create and append a note element
+function createNoteElement(text, color, idx) {
+  const box = document.createElement('div');
+  box.className = 'note';
+  box.style.backgroundColor = color;
+
   const textarea = document.createElement('textarea');
-    const deletebtn = document.createElement('button');
-    const editbtn=document.createElement('button');
-    textarea.readOnly=true;
-  box.style.backgroundColor = getRandomColor();
+  textarea.value = text;
+  textarea.readOnly = true;
 
-    textarea.value = value;
-    editbtn.innerHTML="Edit"
-    
-    deletebtn.innerHTML = 'Delete';
+  const editbtn = document.createElement('button');
+  editbtn.innerHTML = 'Edit';
 
-    
-let editing=true;
+  const deletebtn = document.createElement('button');
+  deletebtn.innerHTML = 'Delete';
 
-editbtn.addEventListener('click',()=>{
-    if(editing){
-        textarea.readOnly=false;
-        textarea.focus();
-        editbtn.innerText='Save'
-editing = false;
-    }else{
-textarea.readOnly=true;
-editbtn.innerHTML='Edit'
-editing=true;
+  let editing = true;
+  editbtn.addEventListener('click', () => {
+    if (editing) {
+      textarea.readOnly = false;
+      textarea.focus();
+      editbtn.innerText = 'Save';
+      editing = false;
+    } else {
+      textarea.readOnly = true;
+      editbtn.innerHTML = 'Edit';
+      editing = true;
+      // Save edit to storage
+      const notesArr = getNotesFromStorage();
+      notesArr[idx].text = textarea.value;
+      saveNotesToStorage(notesArr);
     }
-})
+  });
 
+  deletebtn.addEventListener('click', () => {
+    // Remove from DOM
+    box.remove();
+    // Remove from storage
+    const notesArr = getNotesFromStorage();
+    notesArr.splice(idx, 1);
+    saveNotesToStorage(notesArr);
+    renderNotes(); // re-render to update indices
+  });
 
+  box.appendChild(textarea);
+  box.appendChild(editbtn);
+  box.appendChild(deletebtn);
+  notes.appendChild(box);
+}
 
-    deletebtn.addEventListener('click',()=>{
-        box.remove()
-         removeFromLocalStorage(value);
-    })
+addbtn.addEventListener('click', () => {
+  const value = inputbtn.value.trim();
+  if (!value) return;
+  const color = getRandomColor();
+  // Save to storage
+  const notesArr = getNotesFromStorage();
+  notesArr.push({ text: value, color });
+  saveNotesToStorage(notesArr);
+  renderNotes();
+  inputbtn.value = '';
+});
 
-  
-    box.appendChild(textarea);  // ✅ add textarea inside box
-  box.appendChild(editbtn)
-    box.appendChild(deletebtn); // ✅ add delete button in same box
-    notes.appendChild(box); // ✅ add box to notes area
-
-
-
-    inputbtn.value = "";
-    
- 
-})
-
+// On page load, render notes
+window.addEventListener('DOMContentLoaded', renderNotes);
 
 function getRandomColor() {
-  const r = Math.floor(Math.random() * 256); // 0–255
+  const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
   return `rgb(${r}, ${g}, ${b})`;
@@ -67,14 +100,17 @@ let cnt = true;
 
 themebtn.addEventListener('click', () => {
   if (cnt) {
-    container.style.backgroundColor = 'pink';
-    container.style.color = 'white'; // optional text color
+    container.style.backgroundColor = '#171717'; // Matte Black
+    container.style.color = 'white';
     themebtn.innerText = 'Enable Light Mode';
   } else {
     container.style.backgroundColor = 'white';
-    container.style.color = 'black'; // back to normal
+    container.style.color = 'black';
     themebtn.innerText = 'Enable Dark Mode';
   }
-
-  cnt = !cnt; // toggle the flag
+  cnt = !cnt;
 });
+
+let value = localStorage.getItem('key');
+console.log(value);
+
