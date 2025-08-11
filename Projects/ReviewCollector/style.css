@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #171717;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Globe Background */
+.globe-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#globeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.globe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(23, 23, 23, 0.3) 50%, rgba(23, 23, 23, 0.8) 100%);
+    z-index: 2;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+/* Left Section - Review Form */
+.left-section {
+    flex: 1;
+    padding: 32px;
+    border-right: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.form-container h2 {
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Rating Stars */
+.rating-stars {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: #FFD700;
+}
+
+/* Add Button */
+.add-btn {
+    width: 100%;
+    padding: 14px;
+    background: #4CAF50;
+    color: white;
+    border: 2px solid #45a049;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-btn:hover {
+    background: #45a049;
+}
+
+.add-btn:active {
+    transform: translateY(1px);
+}
+
+/* Right Section - Reviews Display */
+.right-section {
+    flex: 1;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.reviews-container h2 {
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #fff;
+}
+
+.reviews-list {
+    height: calc(100% - 80px);
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.review-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
+    backdrop-filter: blur(5px);
+}
+
+.review-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.review-rating {
+    color: #FFD700;
+    font-size: 1rem;
+}
+
+.review-comment {
+    color: #ccc;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.review-date {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #888;
+    text-align: right;
+}
+
+/* Scrollbar Styling */
+.reviews-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reviews-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.reviews-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 90vh;
+    }
+    
+    .left-section,
+    .right-section {
+        flex: none;
+        padding: 24px;
+    }
+    
+    .left-section {
+        border-right: none;
+        border-bottom: 2px solid #fff;
+    }
+} 

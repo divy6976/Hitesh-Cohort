@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Collector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Globe Background -->
+    <div class="globe-container">
+        <canvas id="globeCanvas"></canvas>
+        <div class="globe-overlay"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Left Section - Review Form -->
+        <div class="left-section">
+            <div class="form-container">
+                <h2>Add Review</h2>
+                <form id="reviewForm">
+                    <div class="input-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="rating">Rating:</label>
+                        <div class="rating-stars">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="0">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" name="comment" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="add-btn">Add Review</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Right Section - Reviews Display -->
+        <div class="right-section">
+            <div class="reviews-container">
+                <h2>All Reviews</h2>
+                <div id="reviewsList" class="reviews-list">
+                    <!-- Reviews will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="globe.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

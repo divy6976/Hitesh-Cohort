@@ -49,11 +49,13 @@ buttons.forEach(button => {
     } else if (value === '=') {
       // Equal button - handled separately
       return;
-    } else if (value === '−') {
+    } else if (value === '−') {                  
+        
       // Handle minus sign
       if (shouldResetDisplay) {
         currentExpression = '-';
         display.textContent = '-';
+        
         shouldResetDisplay = false;
       } else {
         currentExpression += '-';
@@ -83,6 +85,7 @@ buttons.forEach(button => {
   });
 });
 
+
 // Equal button logic
 equalsBtn.addEventListener('click', () => {
   try {
@@ -96,4 +99,4 @@ equalsBtn.addEventListener('click', () => {
     shouldResetDisplay = true;
   }
 });
-
+ 
